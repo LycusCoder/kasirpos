@@ -189,7 +189,23 @@ document.addEventListener("DOMContentLoaded", function () {
   updateWeather();
   setInterval(updateWeather, 60000); // Update weather every 60 seconds
 
-  function navbarDropdown(id) {
+  
+
+  // Close dropdowns if clicked outside
+  window.onclick = function (event) {
+    if (!event.target.matches(".cursor-pointer")) {
+      const dropdowns = document.getElementsByClassName("dropdown-content");
+      for (let i = 0; i < dropdowns.length; i++) {
+        const openDropdown = dropdowns[i];
+        if (openDropdown.style.display === "block") {
+          openDropdown.style.display = "none";
+        }
+      }
+    }
+  };
+});
+
+function navbarDropdown(id) {
     const dropdowns = document.getElementsByClassName("konten-dropdown");
     for (let i = 0; i < dropdowns.length; i++) {
       if (dropdowns[i].id !== id) {
@@ -216,17 +232,3 @@ document.addEventListener("DOMContentLoaded", function () {
     const chatbotWindow = document.getElementById("chatbotWindow");
     chatbotWindow.classList.toggle("hidden");
   }
-
-  // Close dropdowns if clicked outside
-  window.onclick = function (event) {
-    if (!event.target.matches(".cursor-pointer")) {
-      const dropdowns = document.getElementsByClassName("dropdown-content");
-      for (let i = 0; i < dropdowns.length; i++) {
-        const openDropdown = dropdowns[i];
-        if (openDropdown.style.display === "block") {
-          openDropdown.style.display = "none";
-        }
-      }
-    }
-  };
-});
